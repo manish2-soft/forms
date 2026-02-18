@@ -1,17 +1,14 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    // Initialize isAuthenticated from localStorage if available, or default to false
-    // But user specifically wanted reset on reload?
-    // Step 234: "Implemented an AuthContext... to manage the isAuthenticated state in memory. This ensures that the authentication state resets on page reload."
-    // So default to false.
+
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [userId, setUserId] = useState('');
+    const [id, setId] = useState('');
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, userId, setUserId }}>
+        <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, id, setId }}>
             {children}
         </AuthContext.Provider>
     );

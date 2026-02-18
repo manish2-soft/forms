@@ -8,7 +8,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const { setIsAuthenticated, setUserId } = useAuth();
+    const { setIsAuthenticated, setId: setGlobalId } = useAuth();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -20,7 +20,7 @@ function Login() {
 
             if (response.data.success) {
                 setIsAuthenticated(true);
-                setUserId(id);
+                setGlobalId(id);
                 navigate('/dashboard');
             } else {
                 setError('Invalid ID or Password');

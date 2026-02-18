@@ -6,6 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './components/AuthContext';
 import Sample from './components/Sample';
 import Form from './components/Form';
+import Sidebar from './components/Sidebar';
 
 function App() {
     return (
@@ -16,31 +17,11 @@ function App() {
                         <Route path="/" element={<Navigate to="/login" />} />
                         <Route path="/login" element={<Login />} />
 
-                        {/* Standalone Protected Routes */}
-                        <Route
-                            path="/dashboard"
-                            element={
-                                <PrivateRoute>
-                                    <Dashboard />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="/sample"
-                            element={
-                                <PrivateRoute>
-                                    <Sample />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path="/form"
-                            element={
-                                <PrivateRoute>
-                                    <Form />
-                                </PrivateRoute>
-                            }
-                        />
+                        <Route element={<PrivateRoute><Sidebar /></PrivateRoute>}>
+                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/sample" element={<Sample />} />
+                            <Route path="/form" element={<Form />} />
+                        </Route>
                     </Routes>
                 </div>
             </Router>
